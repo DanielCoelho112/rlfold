@@ -1,7 +1,7 @@
 entry_point: agents.rlfold.agent:Agent
 kwargs:
   training_config:
-    device: cuda:7
+    device: cuda:0
     lr: 0.001
     lr_alpha: 0.00001
     alpha: 0.2

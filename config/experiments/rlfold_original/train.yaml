@@ -1,11 +1,11 @@
 env_name: endless_full_nocrash_v5.yaml
 description: "SAC with AE in empty env."
-n_steps: 2000000
+n_steps: 1000000
 moving_window: 50
 warmup_steps: 1500 
 start_remembering: 10
-evaluate_average_episodes: 2
-evaluate_frequency_steps: 5000
+evaluate_average_episodes: 10
+evaluate_frequency_steps: 20000
 host: "127.0.0.1"
 port: 2000
 tm_port: 8010
