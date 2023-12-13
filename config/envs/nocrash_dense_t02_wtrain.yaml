@@ -1,0 +1,14 @@
+- env_configs:
+    background_traffic: dense
+    carla_fps: 10
+    carla_map: Town02
+    terminal:
+      entry_point: terminal.leaderboard:Leaderboard
+      kwargs: {}
+    route_description: lbc
+    reward:
+      entry_point: reward.valeo_action_updated:ValeoAction
+      kwargs:
+        maximum_speed: 6
+    weather_group: train
+  env_id: NoCrash-v0

@@ -1,0 +1,72 @@
+entry_point: agents.rlfold.agent:Agent
+kwargs:
+  training_config:
+    device: cuda:7
+    lr: 0.001
+    lr_alpha: 0.00001
+    alpha: 0.2
+    automatic_alpha: True
+    weight_decay: 0.0
+    discount_factor: 0.85 
+    batch_size: 128
+    target_update_interval: 1 
+    repeat_action: 2
+    n_step: 1
+    log_every: 1000
+    deque_size: 2
+    grad_clip: 100.0
+    unc_threshold: 0.8
+  augmentation_config:
+    use_aug: True
+    pad: 8
+  vehicle_measurements_config:
+    entry_point: agents.models.vehicle_measurements.vehicle_measurements:VehicleMeasurementsEncoder
+    num_inputs: 2
+    fc_dims: 8
+    out_dims: 16
+  waypoints_config:
+    entry_point: agents.models.waypoints.waypoints:WayConv1D
+    num_waypoints: 10
+    fc_dims: 20
+    out_dims: 32
+  image_config:
+    entry_point: agents.models.image.image:ImageEncoder
+    image_size: 256
+    out_dims: 256
+  control_config:
+    pid:
+      kp: 1.0
+      ki: 0.2
+      kd: 0.001
+      dt: 0.1
+  critic_config:
+    entry_point: agents.models.rl_networks.critic_network:CriticNetwork
+    fc_dims: 1024
+    tau: 0.01
+  actor_config:
+    entry_point_steer: agents.models.rl_networks.actor_network_steer:ActorNetwork
+    entry_point_speed: agents.models.rl_networks.actor_network_speed_2stds_unc:ActorNetwork
+    fc_dims: 1024 
+    log_sig_min: -10
+    log_sig_max: 2 
+    epsilon: 0.000001
+  memory_config:
+    capacity: 100000 
+    num_workers: 4
+    obs_info:
+      image:
+        shape: (3, 256, 256)
+        dtype: np.uint8
+      waypoints:
+        shape: (10, 2)
+        dtype: np.float32
+      vehicle_measurements:
+        shape: (2,)
+        dtype: np.float32
+      desired_speed:
+        shape: (1,)
+        dtype: np.float32
+
+
+
+    
