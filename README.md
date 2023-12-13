@@ -1,4 +1,4 @@
-# RLOLD
+# RLfOLD
 This is the implementation of RLfOLD, which is described in:
 
 > **RLfOLD: Reinforcement Learning from Online Demonstrations in Urban Autonomous Driving**
